@@ -8,4 +8,4 @@ Created on Mon Feb 27 14:30:41 2023
 
 print ("hello my team")
 
-Print("tristan t'es ou cousin?")
+print("hello")
