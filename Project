@@ -1,1 +1,7 @@
-
+python -V
+conda activate
+pip -V
+conda install -n base pip
+conda install -n base yfinance
+pip install yfinance   
+conda deactive
