@@ -244,12 +244,13 @@ plt.plot(return_data['HO.PA'], return_data['AI.PA'], 'g.')
 # Add an axis to the plot
 ax = plt.axis()
  
-# Initialize `x`
+# Initialize "x"
 x = np.linspace(ax[0], ax[1] + 0.01)
 # x will help me to plot OLS regression // here x varies between min and max+0.01
  
-# Plot the regression line
+# Plot a red regression line
 plt.plot(x, model.params[0] + model.params[1] * x, 'r', lw=2)
+
 # my OLS regression line : y = 0.0006 + 0.3791 * x
 # 'r' : as we want a red regression line  // lw=2 : line width
  
