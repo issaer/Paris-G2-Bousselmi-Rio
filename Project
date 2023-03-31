@@ -24,7 +24,7 @@ ts = hopa['Close'][-10:]
 ts
 
 #We are going to create a sample to have a random idea of our data, let's take 10 rows
-# Sample 10 rows
+# Sample 15 rows
 sample = hopa.sample(15)
 
 # Print the sample
