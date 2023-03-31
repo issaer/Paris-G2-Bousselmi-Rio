@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Mar 27 13:47:19 2023
+
+@author: flaviemolinari
+"""
+
 #Members of the group : Issae Rio, Flavie Molinari, Tristan la Croix, Clara Fourtanet, Marielle Serra
 
 import pandas as pd
@@ -23,7 +31,7 @@ hopa.describe()
 ts = hopa['Close'][-10:]
 ts
 
-#We are going to create a sample to have a random idea of our data, let's take 10 rows
+#We are going to create a sample to have a random idea of our data, let's take 15 rows
 # Sample 15 rows
 sample = hopa.sample(15)
 
@@ -37,10 +45,16 @@ monthly_hopa = hopa.resample('M').mean()
 print(monthly_hopa)
 
 # An interesting and useful exercise is to deduct closing price from opening price:
+#Now, sample in business months and in quarters to have anotheer point of view
+sample = hopa.sample(15)
+
+print(sample)
+
 # Add a column difference to hopa
 hopa['diff'] = hopa.Open - hopa.Close
 
 print(sample)
+
 
 #To plot the closing prices for Thales
 # Import Matplotlib's "pyplot" module as "plt"
@@ -114,7 +128,7 @@ print(daily_log_returns_shift)
 #Import matplotlib
 import matplotlib.pyplot as plt
 
-# Plot the distribution of "daily_pct_c"
+# Plot the histogram, distribution of "daily_pct_c"
 daily_pct_change.hist(bins=50)
 
 # Pull up summary statistics
