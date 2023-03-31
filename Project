@@ -9,8 +9,8 @@ from datetime import datetime
 
 #Import Thales Data
 hopa = pdr.get_data_yahoo('HO.PA',
-                          start=datetime(2018, 12, 30),  ##(yyyy, dd, mm)
-                          end=datetime(2022, 12, 30))     ##(yyyy, dd, mm)
+                          start=datetime(2018, 12, 30),  
+                          end=datetime(2022, 12, 30))    
 print(hopa)
 
 
@@ -22,22 +22,22 @@ ts = hopa['Close'][-10:]
 ts
 
 
-#We are going to create a sample to have a random idea
+#We are going to create a sample to have a random idea of our data, let's take 10 rows
 # Sample 10 rows
 sample = hopa.sample(15)
 
 # Print the sample
 print(sample)
 
-# Resample to monthly level
+# Resample to monthly level, to have a monthly idea
 monthly_hopa = hopa.resample('M').mean()
 
-# Print `monthly_hopa`
+# Print monthly_hopa
 print(monthly_hopa)
 
 
-# An interesting and usefull exercise is to deduct closing price from opening price
-# Add a column `diff` to `hopa`
+# An interesting and useful exercise is to deduct closing price from opening price:
+# Add a column difference to hopa
 hopa['diff'] = hopa.Open - hopa.Close
 
 print(sample)
