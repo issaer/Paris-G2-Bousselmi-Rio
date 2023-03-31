@@ -21,7 +21,6 @@ hopa.describe()
 ts = hopa['Close'][-10:]
 ts
 
-
 #We are going to create a sample to have a random idea of our data, let's take 10 rows
 # Sample 10 rows
 sample = hopa.sample(15)
@@ -35,7 +34,6 @@ monthly_hopa = hopa.resample('M').mean()
 # Print monthly_hopa
 print(monthly_hopa)
 
-
 # An interesting and useful exercise is to deduct closing price from opening price:
 # Add a column difference to hopa
 hopa['diff'] = hopa.Open - hopa.Close
@@ -43,23 +41,23 @@ hopa['diff'] = hopa.Open - hopa.Close
 print(sample)
 
 #To plot the closing prices for Thales
-# Import Matplotlib's `pyplot` module as `plt`
+# Import Matplotlib's "pyplot" module as "plt"
 import matplotlib.pyplot as plt
 
-# Plot the closing prices for `hopa`
+# Plot the closing prices for "hopa"
 hopa['Close'].plot(grid=True)
 
 # Show the plot (now we have an idea of our data)
 plt.show()
 
 # To inspect the quality of our data
-# Assign `Adj Close` to `daily_close`
+# Assign "Adj Close" to "daily_close"
 daily_close = hopa[['Adj Close']]
 
 # Daily returns
 daily_pct_change = daily_close.pct_change()
 
-# Replace NA values with 0
+# Replace NA values with 0 (to be clearer)
 daily_pct_change.fillna(0, inplace=True)
 
 # Inspect daily returns
@@ -72,50 +70,50 @@ daily_log_returns = np.log(daily_close.pct_change()+1)
 print(daily_log_returns)
 
 #Now, sample in business months and in quarters to have anotheer point of view
-
+#let's take a bigger sample
 sample = hopa.sample(20)
 
-# Print `sample`
+# Print "sample"
 print(sample)
 
 # Resample to monthly level
 monthly_hopa = hopa.resample('M').mean()
 
-# Print `monthly_hopa`
+# Print "monthly_hopa"
 print(monthly_hopa)
 
-# To resample your data (Exercise 9)
+# Resample the data
 monthly = hopa.resample('BM').apply(lambda x: x[-1])
 
 # Calculate the monthly percentage change
 monthly.pct_change()
 
-# Resample `hopa` to quarters, take the mean as value per quarter
+# Resample "hopa" to quarters, take the mean as value per quarter
 quarter = hopa.resample("4M").mean()
 
 # Calculate the quarterly percentage change
 quarter.pct_change()
 
-
 #Calculate the daily log return (other method)
-# Assign `Adj Close` to `daily_close`
+# Assign "Adj Close" to "daily_close"
 daily_close = hopa[['Adj Close']]
+
 # Daily returns
 daily_pct_change = daily_close / daily_close.shift(1) - 1
 
-# Print `daily_pct_change`
+# Print "daily_pct_change"
 print(daily_pct_change)
 
 daily_log_returns_shift = np.log(daily_close / daily_close.shift(1))
+
 print(daily_log_returns_shift)
 
 #Let's draw a summary of statistics and cumulative returns
-# Import matplotlib
+#Import matplotlib
 import matplotlib.pyplot as plt
 
-# Plot the distribution of `daily_pct_c`
+# Plot the distribution of "daily_pct_c"
 daily_pct_change.hist(bins=50)
-
 
 # Pull up summary statistics
 print(daily_pct_change.describe())
@@ -125,7 +123,7 @@ cum_daily_return = (1 + daily_pct_change).cumprod()
 
 print(cum_daily_return)
 
-# Data Viz
+# Data Vizualisation
 # Import matplotlib
 import matplotlib.pyplot as plt
 
@@ -135,7 +133,7 @@ cum_daily_return.plot(figsize=(12,8))
 # Show the plot
 plt.show()
 
-#Let's introduce another CAC40 company in order to compare both
+#Let's introduce another CAC40 company in order to compare both companies
 #We chose Air Liquide but it could be another CAC40 companies
 #You can also compare with several companies at one time using this program 
 def get(tickers, startdate, enddate):
@@ -147,22 +145,22 @@ def get(tickers, startdate, enddate):
 tickers = ['HO.PA', 'AI.PA',]
 all_data = get(tickers, datetime(2018, 12, 30), datetime(2022, 12, 30))
 
-# Frequency Distributions on closing prices only
-
+# Let's plot frequency Distributions on closing prices only
 import matplotlib.pyplot as plt
-# Isolate the `Adj Close` values and transform the DataFrame
+
+# Isolate the "Adj Close" values and transform the DataFrame
 daily_close_px = all_data[['Adj Close']].reset_index().pivot('Date', 'Ticker', 'Adj Close')
  
-# Calculate the daily percentage change for `daily_close_px`
+# Calculate the daily percentage change for "daily_close_px"
 daily_pct_change = daily_close_px.pct_change()
  
-# Plot the distributions
+# Plot the distribution
 daily_pct_change.hist(bins=50, sharex=False, figsize=(12,8))
 
-# Show the plot ( We get 2 histograms that we can compare)
+# Show the plot (We get 2 histograms that we can compare)
 plt.show()
 
-# Moving average on closing prices ( only for Thales)
+# Moving average on closing prices (only for Thales)
 import pandas_datareader.data as pdr
 import yfinance as yf
 yf.pdr_override()
@@ -182,7 +180,6 @@ moving_avg = adj_close_px.rolling(window=40).mean()
 # Inspect the result
 print(moving_avg[-10:])
 
-
 #Volatility calculation to evaluate the riskyness 
 # Import matplotlib
 import matplotlib.pyplot as plt
@@ -200,11 +197,11 @@ vol.plot(figsize=(10, 8))
 plt.show()
 
 # OLS regression
-# Import the `api` model of `statsmodels` under alias `sm`
+# Import the "api" model of "statsmodels" under alias "sm"
 #! pip install datetools
 import statsmodels.api as sm
  
-# Import the `datetools` module from `pandas`
+# Import the "datetools" module from "pandas"
 # from pandas.core import datetools
 # Isolate the adjusted closing price
 all_adj_close = all_data[['Adj Close']]
